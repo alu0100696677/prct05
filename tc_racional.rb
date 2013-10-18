@@ -11,5 +11,8 @@ class Test_Fraccion < Test::Unit::TestCase
 		assert_equal("1/3", Fraccion.new(1,3).to_s)
 	end
 
+	def test_failure
+		assert_equal("1,3", Fraccion.new(1,3).to_s)
+	end
 
 end
