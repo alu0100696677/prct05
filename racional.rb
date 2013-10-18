@@ -10,15 +10,15 @@ class Fraccion
 	attr_reader :num, :den
 
 	def initialize (num, den)
-		@num, @den = num, den	#Definimos las variables
+		@num, @den = num, den						#Definimos las variables
 	end
 
 	def to_s
-		"#{@num}/#{@den}"	#Muestra numerador/denominador
+		"#{@num}/#{@den}"						#Muestra numerador/denominador
 	end
 
 	def reducir (fraccion)
-		res_max = gcd(fraccion.num, fraccion.den)	#Hallamos el MCD entre el numerador y denominador
+		res_max = gcd(fraccion.num, fraccion.den)			#Hallamos el MCD entre el numerador y denominador
 		Fraccion.new(fraccion.num/res_max, fraccion.den/res_max)
 	end
 
@@ -30,7 +30,7 @@ class Fraccion
 
 	def - (fraccion)
 		res_min = mcm(@den, fraccion.den)				#Calculamos el mcm de los denominadores
-		resta = Fraccion.new((res_min/@den*@num)-(res_min/fraccion.den*fraccion.num), res_min) #Fraccion resta
+		resta = Fraccion.new((res_min/@den*@num)-(res_min/fraccion.den*fraccion.num), res_min) 	#Fraccion resta
 		reducir (resta)							#Simplificamos el resultado
 	end	
 
@@ -46,6 +46,7 @@ class Fraccion
 
 end
 
+#Probamos las funciones creadas
 fraccion1 = Fraccion.new(2,3)		#Crea objeto
 fraccion2 = Fraccion.new (6,18)	
 puts "Fraccion 1"
