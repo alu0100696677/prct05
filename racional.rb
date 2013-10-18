@@ -17,39 +17,56 @@ class Fraccion
 		"#{@num}/#{@den}"	#Muestra numerador/denominador
 	end
 
+	def reducir (fraccion)
+		res_max = gcd(fraccion.num, fraccion.den)	#Hallamos el MCD entre el numerador y denominador
+		Fraccion.new(fraccion.num/res_max, fraccion.den/res_max)
+	end
+
 	def + (fraccion)
 		res_min = mcm(@den, fraccion.den)				#Calculamos el mcm de los denominadores
-		Fraccion.new((res_min/@den*@num)+(res_min/fraccion.den*fraccion.num), res_min) #Fraccion suma
+		suma = Fraccion.new((res_min/@den*@num)+(res_min/fraccion.den*fraccion.num), res_min) #Fraccion suma
+		reducir (suma)							#Simplificamos el resultado
 	end	
 
 	def - (fraccion)
 		res_min = mcm(@den, fraccion.den)				#Calculamos el mcm de los denominadores
-		Fraccion.new((res_min/@den*@num)-(res_min/fraccion.den*fraccion.num), res_min) #Fraccion resta
+		resta = Fraccion.new((res_min/@den*@num)-(res_min/fraccion.den*fraccion.num), res_min) #Fraccion resta
+		reducir (resta)							#Simplificamos el resultado
 	end	
 
 	def * (fraccion)
-		Fraccion.new(@num*fraccion.num, @den*fraccion.den)
+		multiplicacion = Fraccion.new(@num*fraccion.num, @den*fraccion.den)
+		reducir (multiplicacion)					#Simplificamos el resultado
 	end
 	
 	def / (fraccion)
-		Fraccion.new(@num*fraccion.den, @den*fraccion.num)
+		division = Fraccion.new(@num*fraccion.den, @den*fraccion.num)
+		reducir (division)						#Simplificamos el resultado
 	end
 
 end
 
-racional1 = Fraccion.new(1,3)		#Crea objeto
-puts "#{racional1}"
+fraccion1 = Fraccion.new(2,3)		#Crea objeto
+fraccion2 = Fraccion.new (6,18)	
+puts "Fraccion 1"
+puts "#{fraccion1}"
+puts "Fraccion 2"
+puts "#{fraccion2}"
 
-racional2 = Fraccion.new (2,6)		#Multiplicacion
-puts "#{racional2}"
-racional3 = racional1*racional2
-puts "#{racional3}"
+fraccion3 = fraccion1+fraccion2		#Suma
+puts "Suma"
+puts "#{fraccion3}"
 
-racional3 = racional1/racional2		#Division
-puts "#{racional3}"
+fraccion3 = fraccion1-fraccion2		#Resta
+puts "Resta"
+puts "#{fraccion3}"
 
-racional3 = racional1+racional2		#Suma
-puts "#{racional3}"
+fraccion3 = fraccion1*fraccion2		#Multiplicacion
+puts "Multiplicacion"
+puts "#{fraccion3}"
 
-racional3 = racional1-racional2		#Resta
-puts "#{racional3}"
+fraccion3 = fraccion1/fraccion2		#Division
+puts "Division"
+puts "#{fraccion3}"
+
+
