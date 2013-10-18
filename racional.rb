@@ -3,6 +3,7 @@
 # Implementar en este fichero la clase para crear objetos racionales
 
 require "./gcd.rb"
+require "./mcm.rb"
 
 class Fraccion
 
@@ -23,6 +24,8 @@ class Fraccion
 	def / (fraccion)
 		Fraccion.new(@num*fraccion.den, @den*fraccion.num)
 	end
+
+	
 
 end
 
