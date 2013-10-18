@@ -17,6 +17,11 @@ class Fraccion
 		"#{@num}/#{@den}"	#Muestra numerador/denominador
 	end
 
+	def + (fraccion)
+		res_min = mcm(@den, fraccion.den)				#Calculamos el mcm de los denominadores
+		Fraccion.new((res_min/@den*@num)+(res_min/fraccion.den*fraccion.num), res_min) #Fraccion suma
+	end	
+
 	def * (fraccion)
 		Fraccion.new(@num*fraccion.num, @den*fraccion.den)
 	end
@@ -24,8 +29,6 @@ class Fraccion
 	def / (fraccion)
 		Fraccion.new(@num*fraccion.den, @den*fraccion.num)
 	end
-
-	
 
 end
 
@@ -39,3 +42,8 @@ puts "#{racional3}"
 
 racional3 = racional1/racional2		#Division
 puts "#{racional3}"
+
+racional3 = racional1+racional2		#Suma
+puts "#{racional3}"
+
+
